@@ -1,6 +1,5 @@
 #include <iostream>
 
-
 //power of two using loops
 bool isPowerOfTwoLoop(int n) {
     if (n <= 0) return false;
@@ -76,7 +75,30 @@ void primeTest() {
 
 //reduce the fraction
 void reduceFrac(int numerator, int denominator) {
+    //make numerator positive if denom is neg
+    if(denominator < 0){
+        numerator *= -1;
+        denominator *= -1;
+    }
 
+    int numberToDivide = 2;
+    //continue until the break or until the denominator is 1
+    while(numerator != 1 && denominator!= 1){
+        //divide by the current prime number, will repeat until no longer able to then moves to the next prime number
+        //i think this could be a switch statement, but i don't really know how to use those
+        if(numerator % numberToDivide == 0 && denominator % numberToDivide == 0){
+            numerator = numerator / numberToDivide;
+            denominator = denominator / numberToDivide;
+        } else if(numberToDivide == 2){
+            numberToDivide = 3;
+        } else if(numberToDivide == 3){
+            numberToDivide = 5;
+        } else if(numberToDivide == 5){
+            numberToDivide = 7;
+        } else if(numberToDivide == 7){
+            break;
+        }
+    }
 }
 
 //runs test methods
@@ -84,8 +106,3 @@ int main() {
     pow2Test(); //tests loop and non loop at the same time
     primeTest();
 }
-
-// TIP See CLion help at <a
-// href="https://www.jetbrains.com/help/clion/">jetbrains.com/help/clion/</a>.
-//  Also, you can try interactive lessons for CLion by selecting
-//  'Help | Learn IDE Features' from the main menu.
