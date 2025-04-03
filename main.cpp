@@ -136,7 +136,8 @@ void fractionReduceTest() {
                         Fraction(3, 4)};
 
     //has to stop at 4, no clue why
-    for (int i = 0; i < 4; i++) {
+    //apparently sizeof gets the byte size, so use std::size
+    for (int i = 0; i < std::size(inputs); i++) {
         Fraction input = inputs[i];
         Fraction expected = outputs[i];
         Fraction actual = reduceFrac(input);
