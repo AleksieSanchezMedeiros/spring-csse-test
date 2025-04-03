@@ -13,7 +13,15 @@ bool isPowerOfTwoLoop(int n) {
 //power of two without using loops
 bool isPowerOfTwoNonLoop(int n) {
     //dereference?
-    return false;
+    if (n <= 0) return false;
+    //the ampersand dereferences the value
+    //so now its in bits, 100 - 011, in case of 4 -3
+    //would return 000, which is 0 which would be true
+    //3 - 2, 011 - 10; would not return 0, so not pow of 2
+    //credits to https://stackoverflow.com/questions/600293/how-to-check-if-a-number-is-a-power-of-2
+    //helped me understand the concept and also provided the code
+    bool val = (n & (n - 1)) == 0;
+    return val;
 }
 
 //test power of 2 method
@@ -143,11 +151,11 @@ void fractionReduceTest() {
         Fraction actual = reduceFrac(input);
 
         if(!expected.equals(actual)) {
-            std::cout << "Tests failed, current case is: \n" << inputs[i].to_string() << std::endl;
+            std::cout << "Fraction Reducer Tests FAILED, current case is: \n" << inputs[i].to_string() << std::endl;
         }
     }
 
-    std::cout << "Tests passed!" << std::endl;
+    std::cout << "Fraction Reducer Tests PASSED" << std::endl;
 }
 
 //runs test methods
